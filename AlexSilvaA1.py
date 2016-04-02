@@ -51,5 +51,18 @@ def main():
     while choice != "Q":
         if choice == "L":
             print("Test123")
+        elif choice == "H":
+            print("Test234")
+        elif choice == "R":
+            print("Test456")
+        elif choice == "A":
+            print("Test789")
+        else:
+            print("Invalid menu choice.")
+        print(MENU)
+        choice == input(">>> ").upper()
+
+    print("items saved to items.csv")
+    print("Have a nice day. :)")
 
 main()
