@@ -39,7 +39,7 @@ MENU = "\nMenu:\n(L)ist all items\n(H)ire an item\n(R)eturn an item\n(A)dd new i
 #Determines the filename
 filename = "items.csv"
 
-#Creates an empty list
+#Creates an empty list for variable 'items'
 items = []
 
 def main():
@@ -64,5 +64,21 @@ def main():
 
     print("items saved to items.csv")
     print("Have a nice day. :)")
+
+"""
+function load_items()
+    read csv file
+    close csv file
+    append to items list
+"""
+
+def load_items():
+    in_file = open("items.csv", 'r')
+    items.append()
+
+"""
+function hire_item()
+    pass
+"""
 
 main()
