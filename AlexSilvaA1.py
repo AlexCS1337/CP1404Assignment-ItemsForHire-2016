@@ -73,8 +73,9 @@ function load_items()
 """
 
 def load_items():
-    in_file = open("items.csv", 'r')
+    in_file = open(filename, 'r')
     items.append()
+    in_file.close()
 
 """
 function hire_item()
