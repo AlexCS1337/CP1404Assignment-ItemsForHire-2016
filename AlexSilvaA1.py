@@ -44,7 +44,9 @@ items = []
 
 #Opens and loads filename
 in_file = open(filename)
-
+for line in in_file:
+    in_file.split(", ")
+    items.append(in_file)
 in_file.close()
 
 #Main function; contains welcome and farewell messages and choices
