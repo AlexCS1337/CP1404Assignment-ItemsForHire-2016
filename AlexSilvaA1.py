@@ -81,7 +81,7 @@ function load_items()
 """
 
 def load_items():
-    print("test")
+    print(items)
 
 """
 function hire_item()
