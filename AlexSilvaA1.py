@@ -42,6 +42,12 @@ filename = "items.csv"
 #Creates an empty list for variable 'items'
 items = []
 
+#Opens and loads filename
+in_file = open(filename)
+
+in_file.close()
+
+#Main function; contains welcome and farewell messages and choices
 def main():
     print("Items for Hire - by Alex Silva")
     print("items loaded from", filename)
@@ -73,9 +79,7 @@ function load_items()
 """
 
 def load_items():
-    in_file = open(filename, 'r')
-    items.append()
-    in_file.close()
+    print("test")
 
 """
 function hire_item()
