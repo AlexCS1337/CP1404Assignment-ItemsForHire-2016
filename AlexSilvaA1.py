@@ -78,8 +78,7 @@ def load_items():
     #Opens and loads filename
     in_file = open(FILENAME)
     for line in in_file:
-        parts = line.split(", ")
-
+        parts = line.strip().split(',')
         items.append(parts)
     in_file.close()
     return items
