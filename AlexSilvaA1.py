@@ -6,8 +6,9 @@
 
 Pseudocode:
 
+Constants:
+MENU
 determine filename
-items = empty list
 
 function main()
     display welcome message
@@ -37,34 +38,27 @@ function main()
 MENU = "\nMenu:\n(L)ist all items\n(H)ire an item\n(R)eturn an item\n(A)dd new item\n(Q)uit"
 
 #Determines the filename
-filename = "items.csv"
-
-#Creates an empty list for variable 'items'
-items = []
-
-#Opens and loads filename
-in_file = open(filename)
-for line in in_file:
-    in_file.split(", ")
-    items.append(in_file)
-in_file.close()
+FILENAME = "items.csv"
 
 #Main function; contains welcome and farewell messages and choices
 def main():
+
+    items = load_items()
+    print(items)
     print("Items for Hire - by Alex Silva")
-    print("items loaded from", filename)
+    print("items loaded from", FILENAME)
 
     print(MENU)
     choice = input(">>> ").upper()
     while choice != "Q":
         if choice == "L":
-            print("Test123")
+            print(items)
         elif choice == "H":
-            print("Test234")
+            print(items)
         elif choice == "R":
-            print("Test456")
+            print(items)
         elif choice == "A":
-            print("Test789")
+            hire_items()
         else:
             print("Invalid menu choice.")
         print(MENU)
@@ -75,17 +69,29 @@ def main():
 
 """
 function load_items()
-    read csv file
-    close csv file
-    append to items list
+    items = []
 """
-
 def load_items():
-    print(items)
+    #Creates an empty list for variable 'items'
+    items = []
+
+    #Opens and loads filename
+    in_file = open(FILENAME)
+    for line in in_file:
+        parts = line.split(", ")
+
+        items.append(parts)
+    in_file.close()
+    return items
+
+
 
 """
 function hire_item()
-    pass
+    test
 """
+
+def hire_items():
+    print("test")
 
 main()
