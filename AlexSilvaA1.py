@@ -69,7 +69,12 @@ def main():
 
 """
 function load_items()
-    items = []
+    determine items = empty list
+    open FILENAME
+    sort lines in in_file
+    append parts into items
+    close FILENAME
+    return items
 """
 def load_items():
     #Creates an empty list for variable 'items'
