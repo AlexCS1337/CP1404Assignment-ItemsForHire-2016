@@ -52,13 +52,27 @@ def main():
     choice = input(">>> ").upper()
     while choice != "Q":
         if choice == "L":
+            print("All items on file (* indicates item is currently out):")
             print(items)
         elif choice == "H":
-            print(items)
+            item_to_hire = int(input("Enter the number of an item to hire"))
+            hire_items(items)
+            valid_input = False
+            while not valid_input:
+                pass
         elif choice == "R":
             print(items)
+            valid_input = False
+            while not valid_input:
+                try:
+                    item_to_return = int(input("Enter the number of an item to return "))
+                    valid_input = True
+                except ValueError:
+                    print("Invalid input; enter a number ")
         elif choice == "A":
-            hire_items(items)
+            new_item = input("Item name: ")
+            item_description = input("Description: ")
+            price_per_day = float(input("Price per day: "))
         else:
             print("Invalid menu choice.")
         print(MENU)
@@ -69,10 +83,10 @@ def main():
 
 """
 function load_items()
-    determine items = empty list
+    determine items as empty list
     open FILENAME
     sort lines in in_file
-    append parts into items
+    append parts to items
     close FILENAME
     return items
 """
@@ -91,8 +105,9 @@ def load_items():
 
 
 """
-function hire_item()
-    test
+function hire_item(items)
+    to be implemented
+
 """
 
 def hire_items(items):
