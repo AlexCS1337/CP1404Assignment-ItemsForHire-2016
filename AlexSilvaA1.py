@@ -58,7 +58,7 @@ def main():
         elif choice == "R":
             print(items)
         elif choice == "A":
-            hire_items()
+            hire_items(items)
         else:
             print("Invalid menu choice.")
         print(MENU)
@@ -95,7 +95,7 @@ function hire_item()
     test
 """
 
-def hire_items():
-    print("test")
+def hire_items(items):
+    pass
 
 main()
