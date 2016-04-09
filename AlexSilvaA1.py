@@ -59,7 +59,8 @@ def main():
             hire_items(items)
             valid_input = False
             while not valid_input:
-                pass
+                print("test")
+            print('item',"hired for", price_per_day)
         elif choice == "R":
             print(items)
             valid_input = False
