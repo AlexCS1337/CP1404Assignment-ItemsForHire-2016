@@ -165,12 +165,12 @@ def return_items(items):
     valid_input = False
     while not valid_input:
         try:
-            item_to_hire = int(input("Enter the number of an item to return\n>>>"))
+            item_to_return = int(input("Enter the number of an item to return\n>>>"))
             valid_input = True
         except ValueError:
             print("Invalid input; enter a number\n>>>")
 
-    items[item_to_hire][3] = "in"
+    items[item_to_return][3] = "in"
 
     print('item',"returned.")
     return items
