@@ -71,8 +71,8 @@ def main():
 function load_items()
     determine items as empty list
     open FILENAME
-    sort lines in in_file
-    append parts to items
+        sort lines in in_file
+        append parts to items
     close FILENAME
     return items
 """
@@ -180,8 +180,25 @@ function add_items
 
 """
 def add_items(items):
+
+    new_item = ["","",0.0, "in"]
+
     item_name = input("Item name: ")
+    while item_name == "":
+        print("Input cannot be blank")
+        item_name = input("Item name: ")
     item_description = input("Description: ")
-    price_per_day = float(input("Price per day: "))
+    while item_description == "":
+        print("Input cannot be blank")
+        item_description = input("Description: ")
+    valid_input = False
+    while not valid_input:
+        try:
+            price_per_day = float(input("Price per day: $"))
+            valid_input = True
+        except ValueError:
+            print("Invalid input; enter a number\n>>>")
+
+    items.append(new_item)
 
 main()
