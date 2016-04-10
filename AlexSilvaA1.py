@@ -50,10 +50,12 @@ def main():
 
     # Counts how many items being saved to filename
     save = 0
+    # Welcome message
     print(items)
     print("Items for Hire - by Alex Silva")
     print("items loaded from", FILENAME)
 
+    # This prints the menu which loops back until input is Q/q (quit)
     print(MENU)
     choice = input(">>> ").upper()
     while choice != "Q":
@@ -72,6 +74,7 @@ def main():
         print(MENU)
         choice = input(">>> ").upper()
 
+    # displays farewell message
     print(save, "items saved to items.csv")
     print("Have a nice day. :)")
 
@@ -103,13 +106,26 @@ def load_items():
 """
 function hire_item(items)
     call list_items(items, "i")
+    rows = length of items
+    valid_index = []
+    counter = 0
+    for i in range
+        counter += 1
+        if items = in
+            counter appends into valid_index
+            items[i] appends into valid_index
     valid_input = Fasle
     while not valid_input
         try
             get item_to_hire
-            valid_input = True
+            if item_to_hire in valid_index
+                valid_input = True
+            else
+                display invalid input error message
         except ValueError
             display invalid value message
+        except index error
+            display index error message
 
     item_to_hire = "out"
     dsiplay item hired for price
@@ -121,17 +137,32 @@ function hire_item(items)
 def hire_items(items):
     # Lists all items that are currently in
     list_items(items, "i")
+    rows = len(items)
 
     # Select Valid item
+    # ACQUIRE VALID ITEMS
+    valid_index = []
+    counter = 0
+    for i in range(0, rows):
+        counter += 1
+        if items[i][3] == "in":
+            valid_index.append(counter)
+            valid_index.append(items[i])
+
+
+    # SELECT VALID ITEM
     valid_input = False
     while not valid_input:
         try:
             item_to_hire = int(input("Enter the number of an item to hire\n>>>"))
-            valid_input = True
+            if item_to_hire in valid_index:
+                valid_input = True
+            else:
+                print("That item is not on hire")
         except ValueError:
             print("Invalid input; enter a number\n>>>")
         except IndexError:
-            print("Invalid number")
+            print("Invalid item number")
 
     # Changes hired item status to 'out'
     items[item_to_hire][3] = "out"
@@ -236,9 +267,13 @@ def return_items(items):
     rows = len(items)
     # ACQUIRE VALID ITEMS
     valid_index = []
+    counter = 0
     for i in range(0, rows):
+        counter += 1
         if items[i][3] == "out":
+            valid_index.append(counter)
             valid_index.append(items[i])
+
 
     # SELECT VALID ITEM
     valid_input = False
