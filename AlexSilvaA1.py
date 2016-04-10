@@ -8,7 +8,7 @@ Pseudocode:
 
 Constants:
 MENU
-determine filename
+FILENAME
 
 function main()
     display welcome message
@@ -17,14 +17,13 @@ function main()
     get choice
     while choice is not 'Q'
         if choice is 'L'
-            display all items from list
+            call function list_items
         else if choice is 'H'
-            display avaliable items from list
+            call function hire_items
         else if choice is 'R'
-            display hired items
+            call function return_items
         else if choice is 'A'
-            get new item name
-            add item to list
+            call function add_items
         else
             display invalid choice message
         display menu
@@ -63,7 +62,7 @@ def main():
         else:
             print("Invalid menu choice.")
         print(MENU)
-        choice == input(">>> ").upper()
+        choice = input(">>> ").upper()
 
     print("items saved to items.csv")
     print("Have a nice day. :)")
@@ -98,7 +97,7 @@ function hire_item(items)
 """
 
 def hire_items(items):
-
+    #Lists all items that are currently in
     list_items(items, "i")
 
     valid_input = False
@@ -113,7 +112,10 @@ def hire_items(items):
 
     print('item',"hired for", items[item_to_hire][2])
     return items
+"""
+function list_items
 
+"""
 
 def list_items(items, data_filter):
     rows = len(items)
@@ -121,48 +123,62 @@ def list_items(items, data_filter):
 
     if data_filter == "a":
         for i in range(0, rows):
-            data_table += items[i][0]
-            data_table += items[i][1]
-            data_table += items[i][2]
+            data_table += "{:5}".format(str(i))
+            data_table += "{:15}".format(items[i][0])
+            data_table += "{:30}".format(items[i][1])
+            data_table += "= $ {}".format(items[i][2])
             if items[i][3] == "out":
-                data_table +="*"
+                data_table += "*"
             data_table += "\n"
 
     elif data_filter == "i":
          for i in range(0, len(items)):
             if items[i][3] == "in":
-                data_table += items[i][0]
-                data_table += items[i][1]
-                data_table += items[i][2]
+                data_table += "{:5}".format(str(i))
+                data_table += "{:15}".format(items[i][0])
+                data_table += "{:30}".format(items[i][1])
+                data_table += "= $ {}".format(items[i][2])
+                data_table += "\n"
 
     elif data_filter == "o":
         for i in range(0, len(items)):
             if items[i][3] == "out":
-                data_table += items[i][0]
-                data_table += items[i][1]
-                data_table += items[i][2]
+                data_table += "{:5}".format(str(i))
+                data_table += "{:15}".format(items[i][0])
+                data_table += "{:30}".format(items[i][1])
+                data_table += "= $ {}".format(items[i][2])
+                data_table += "\n"
+
     else:
         print("An internal error occurred.")
 
     print(data_table)
 
-def return_items(items):
+"""
+function return_items
 
+"""
+def return_items(items):
+    #Lists all items that are currently out
     list_items(items, "o")
 
     valid_input = False
     while not valid_input:
         try:
-            item_to_hire = int(input("Enter the number of an item to hire\n>>>"))
+            item_to_hire = int(input("Enter the number of an item to return\n>>>"))
             valid_input = True
         except ValueError:
             print("Invalid input; enter a number\n>>>")
 
     items[item_to_hire][3] = "in"
 
-    print('item',"hired for", items[item_to_hire][2])
+    print('item',"returned.")
     return items
 
+"""
+function add_items
+
+"""
 def add_items(items):
     item_name = input("Item name: ")
     item_description = input("Description: ")
