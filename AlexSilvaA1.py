@@ -125,6 +125,8 @@ def hire_items(items):
             valid_input = True
         except ValueError:
             print("Invalid input; enter a number\n>>>")
+        except IndexError:
+            print("Invalid number")
 
     items[item_to_hire][3] = "out"
 
