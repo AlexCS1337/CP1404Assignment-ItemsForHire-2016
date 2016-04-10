@@ -33,15 +33,17 @@ function main()
 
 """
 
-#Determines Constants
-MENU = "\nMenu:\n(L)ist all items\n(H)ire an item\n(R)eturn an item\n(A)dd new item\n(Q)uit"
+# Determines Constants
+MENU = "\nMenu:\n(L)ist all items\n(H)ire an item\n(R)eturn an item\n(A)dd new item to stock\n(Q)uit"
 
-#Determines the filename
+# Determines the filename
 FILENAME = "items.csv"
 
-#Main function; contains welcome and farewell messages and choices
-def main():
+#Counts how many items being saved to filename
+SAVE = 0
 
+# Main function; contains welcome and farewell messages and choices
+def main():
     items = load_items()
     print(items)
     print("Items for Hire - by Alex Silva")
@@ -64,8 +66,9 @@ def main():
         print(MENU)
         choice = input(">>> ").upper()
 
-    print("items saved to items.csv")
+    print(SAVE, "items saved to items.csv")
     print("Have a nice day. :)")
+
 
 """
 function load_items()
@@ -76,11 +79,13 @@ function load_items()
     close FILENAME
     return items
 """
+
+
 def load_items():
-    #Creates an empty list for variable 'items'
+    # Creates an empty list for variable 'items'
     items = []
 
-    #Opens and loads filename
+    # Opens and loads filename
     in_file = open(FILENAME)
     for line in in_file:
         parts = line.strip().split(',')
@@ -89,15 +94,15 @@ def load_items():
     return items
 
 
-
 """
 function hire_item(items)
     to be implemented
 
 """
 
+
 def hire_items(items):
-    #Lists all items that are currently in
+    # Lists all items that are currently in
     list_items(items, "i")
 
     valid_input = False
@@ -110,12 +115,15 @@ def hire_items(items):
 
     items[item_to_hire][3] = "out"
 
-    print('item',"hired for", items[item_to_hire][2])
+    print('item', "hired for", items[item_to_hire][2])
     return items
+
+
 """
 function list_items
 
 """
+
 
 def list_items(items, data_filter):
     rows = len(items)
@@ -132,7 +140,7 @@ def list_items(items, data_filter):
             data_table += "\n"
 
     elif data_filter == "i":
-         for i in range(0, len(items)):
+        for i in range(0, rows):
             if items[i][3] == "in":
                 data_table += "{:5}".format(str(i))
                 data_table += "{:15}".format(items[i][0])
@@ -141,7 +149,7 @@ def list_items(items, data_filter):
                 data_table += "\n"
 
     elif data_filter == "o":
-        for i in range(0, len(items)):
+        for i in range(0, rows):
             if items[i][3] == "out":
                 data_table += "{:5}".format(str(i))
                 data_table += "{:15}".format(items[i][0])
@@ -154,34 +162,51 @@ def list_items(items, data_filter):
 
     print(data_table)
 
+
 """
 function return_items
 
 """
-def return_items(items):
-    #Lists all items that are currently out
-    list_items(items, "o")
 
+
+def return_items(items):
+    # Lists all items that are currently out
+    list_items(items, "o")
+    rows = len(items)
+    # ACQUIRE VALID ITEMS
+    valid_index = []
+    for i in range(0, rows):
+        if items[i][3] == "out":
+            valid_index.append(items[i])
+
+    # SELECT VALID ITEM
     valid_input = False
     while not valid_input:
         try:
             item_to_return = int(input("Enter the number of an item to return\n>>>"))
-            valid_input = True
+            if item_to_return in valid_index:
+                valid_input = True
+            else:
+                print("That item is not on hire")
         except ValueError:
             print("Invalid input; enter a number\n>>>")
+        except:
+            print("Invalid item number")
 
     items[item_to_return][3] = "in"
 
-    print('item',"returned.")
+    print('item', "returned.")
     return items
+
 
 """
 function add_items
 
 """
-def add_items(items):
 
-    new_item = ["","",0.0, "in"]
+
+def add_items(items, SAVE):
+    new_item = ["", "", 0.0, "in"]
 
     item_name = input("Item name: ")
     while item_name == "":
@@ -199,6 +224,13 @@ def add_items(items):
         except ValueError:
             print("Invalid input; enter a number\n>>>")
 
+    new_item[0] = item_name
+    new_item[1] = item_description
+    new_item[2] = price_per_day
+
     items.append(new_item)
+    SAVE += 1
+    return items
+
 
 main()
