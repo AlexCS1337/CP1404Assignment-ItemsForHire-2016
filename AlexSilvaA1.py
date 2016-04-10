@@ -139,7 +139,6 @@ def hire_items(items):
     list_items(items, "i")
     rows = len(items)
 
-    # Select Valid item
     # ACQUIRE VALID ITEMS
     valid_index = []
     counter = 0
