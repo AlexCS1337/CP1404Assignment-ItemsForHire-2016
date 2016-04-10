@@ -9,15 +9,17 @@ Pseudocode:
 Constants:
 MENU
 FILENAME
-SAVE
+
 
 function main()
+    items = load_items()
     display welcome message
     display amount of items loaded from csv
     display menu
     get choice
     while choice is not 'Q'
         if choice is 'L'
+            display message "all items on file:"
             call function list_items(items, "a")
         else if choice is 'H'
             call function hire_items(items)
@@ -73,7 +75,7 @@ def main():
 
 
 """
-function load_items(items)
+function load_items()
     items = ""
     open FILENAME
         sort lines in in_file
@@ -105,7 +107,7 @@ function hire_item(items)
             get item_to_hire
             valid_input = True
         except ValueError
-            display error message
+            display invalid value message
 
     item_to_hire = "out"
     dsiplay item hired for price
@@ -128,6 +130,7 @@ def hire_items(items):
         except IndexError:
             print("Invalid number")
 
+    #Changes hired item status to 'out'
     items[item_to_hire][3] = "out"
 
     print(items[item_to_hire][0], "hired for $", items[item_to_hire][2])
@@ -140,11 +143,16 @@ function list_items(items. data_filter)
     data_table = ""
 
     if data_filter = all
-
+        data_tale += list of items.format
+        if items = out
+            data_table += '*'
+        data_table += space
     if data_filter = in
-
+        data_talbe += list of in stock items.format
+        data_table += space
     if data_filter = out
-
+        data_talbe += list of out of stock items.format
+        data_table += space
     else
         display error message
 
@@ -154,6 +162,7 @@ function list_items(items. data_filter)
 
 
 def list_items(items, data_filter):
+    #determins rows as the length of items and data_table an empty varible
     rows = len(items)
     data_table = ""
 
@@ -212,7 +221,7 @@ function return_items(items)
             else
                 display "That item is not on hire"
         except ValueError
-            display error message
+            display Value error message
         :except
             display error message
 """
@@ -239,12 +248,13 @@ def return_items(items):
                 print("That item is not on hire")
         except ValueError:
             print("Invalid input; enter a number\n>>>")
-        except:
+        except IndexError:
             print("Invalid item number")
 
+    #Changes item_to_return status to 'in'
     items[item_to_return][3] = "in"
 
-    print('item', "returned.")
+    print(items[item_to_return][0], "returned")
     return items
 
 
@@ -266,7 +276,7 @@ function add_items(items, SAVE)
             get prince_per_day
             valid_input = True
         :except ValueError
-            display error message
+            display value error message
 
     new_item[0] = item_name
     new_item[1] = item_description
@@ -280,8 +290,10 @@ function add_items(items, SAVE)
 
 
 def add_items(items, save):
+    #Creates a list called new_item
     new_item = ["", "", 0.0, "in"]
 
+    #
     item_name = input("Item name: ")
     while item_name == "":
         print("Input cannot be blank")
@@ -298,12 +310,16 @@ def add_items(items, save):
         except ValueError:
             print("Invalid input; enter a number\n>>>")
 
+    # This adds item_name, item_description and price_per_day into the list new_item
     new_item[0] = item_name
     new_item[1] = item_description
     new_item[2] = price_per_day
 
+    # saves new item to items and adds to save counter
     items.append(new_item)
     save += 1
+    #displays message
+    print(new_item[0], new_item[1] + ", $", new_item[2], "now available for hire")
     return items
 
 
