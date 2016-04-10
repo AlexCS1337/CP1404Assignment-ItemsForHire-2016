@@ -149,7 +149,6 @@ def hire_items(items):
             valid_index.append(counter)
             valid_index.append(items[i])
 
-
     # SELECT VALID ITEM
     valid_input = False
     while not valid_input:
@@ -273,7 +272,6 @@ def return_items(items):
         if items[i][3] == "out":
             valid_index.append(counter)
             valid_index.append(items[i])
-
 
     # SELECT VALID ITEM
     valid_input = False
