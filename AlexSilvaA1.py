@@ -53,27 +53,13 @@ def main():
     while choice != "Q":
         if choice == "L":
             print("All items on file (* indicates item is currently out):")
-            print(items)
+            list_items(items, "all")
         elif choice == "H":
-            item_to_hire = int(input("Enter the number of an item to hire"))
-            hire_items(items)
-            valid_input = False
-            while not valid_input:
-                print("test")
-            print('item',"hired for", price_per_day)
+            items = hire_items(items)
         elif choice == "R":
-            print(items)
-            valid_input = False
-            while not valid_input:
-                try:
-                    item_to_return = int(input("Enter the number of an item to return "))
-                    valid_input = True
-                except ValueError:
-                    print("Invalid input; enter a number ")
+            items = return_items(items)
         elif choice == "A":
-            new_item = input("Item name: ")
-            item_description = input("Description: ")
-            price_per_day = float(input("Price per day: "))
+            items = add_items(items)
         else:
             print("Invalid menu choice.")
         print(MENU)
@@ -112,6 +98,71 @@ function hire_item(items)
 """
 
 def hire_items(items):
-    pass
+
+    list_items(items, "in")
+
+    valid_input = False
+    while not valid_input:
+        try:
+            item_to_hire = int(input("Enter the number of an item to hire\n>>>"))
+            valid_input = True
+        except ValueError:
+            print("Invalid input; enter a number\n>>>")
+
+    items[item_to_hire][3] = "out"
+
+    print('item',"hired for", items[item_to_hire][2])
+    return items
+
+
+def list_items(items, data_filter):
+    rows = len(items)
+    data_table = ""
+
+    if data_filter == "all":
+        for i in range(0, len(items)):
+            data_table += items[i][0]
+            data_table += items[i][1]
+            data_table += items[i][2]
+            data_table += items[i][3]
+
+    if data_filter == "in":
+         for i in range(0, len(items)):
+            if items[i][3] == "in":
+                data_table += items[i][0]
+                data_table += items[i][1]
+                data_table += items[i][2]
+                data_table += items[i][3]
+
+    if data_filter == "out":
+        for i in range(0, len(items)):
+            if items[i][3] == "out":
+                data_table += items[i][0]
+                data_table += items[i][1]
+                data_table += items[i][2]
+                data_table += items[i][3]
+
+
+def return_items(items):
+
+    list_items(items, "out")
+
+    valid_input = False
+    while not valid_input:
+        try:
+            item_to_hire = int(input("Enter the number of an item to hire\n>>>"))
+            valid_input = True
+        except ValueError:
+            print("Invalid input; enter a number\n>>>")
+
+    items[item_to_hire][3] = "in"
+
+    print('item',"hired for", items[item_to_hire][2])
+    return items
+
+def add_items(items):
+    item_name = input("Item name: ")
+    item_description = input("Description: ")
+    price_per_day = float(input("Price per day: "))
 
 main()
