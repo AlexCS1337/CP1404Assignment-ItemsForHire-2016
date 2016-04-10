@@ -126,7 +126,7 @@ def list_items(items, data_filter):
             data_table += items[i][2]
             data_table += items[i][3]
 
-    if data_filter == "in":
+    elif data_filter == "in":
          for i in range(0, len(items)):
             if items[i][3] == "in":
                 data_table += items[i][0]
@@ -134,14 +134,16 @@ def list_items(items, data_filter):
                 data_table += items[i][2]
                 data_table += items[i][3]
 
-    if data_filter == "out":
+    elif data_filter == "out":
         for i in range(0, len(items)):
             if items[i][3] == "out":
                 data_table += items[i][0]
                 data_table += items[i][1]
                 data_table += items[i][2]
                 data_table += items[i][3]
-
+    else:
+        print("An internal error occurred.")
+    return data_table
 
 def return_items(items):
 
