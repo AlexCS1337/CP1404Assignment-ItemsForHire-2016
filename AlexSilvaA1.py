@@ -53,7 +53,7 @@ def main():
     while choice != "Q":
         if choice == "L":
             print("All items on file (* indicates item is currently out):")
-            list_items(items, "all")
+            list_items(items, "a")
         elif choice == "H":
             items = hire_items(items)
         elif choice == "R":
@@ -99,7 +99,7 @@ function hire_item(items)
 
 def hire_items(items):
 
-    list_items(items, "in")
+    list_items(items, "i")
 
     valid_input = False
     while not valid_input:
@@ -119,35 +119,36 @@ def list_items(items, data_filter):
     rows = len(items)
     data_table = ""
 
-    if data_filter == "all":
-        for i in range(0, len(items)):
+    if data_filter == "a":
+        for i in range(0, rows):
             data_table += items[i][0]
             data_table += items[i][1]
             data_table += items[i][2]
-            data_table += items[i][3]
+            if items[i][3] == "out":
+                data_table +="*"
+            data_table += "\n"
 
-    elif data_filter == "in":
+    elif data_filter == "i":
          for i in range(0, len(items)):
             if items[i][3] == "in":
                 data_table += items[i][0]
                 data_table += items[i][1]
                 data_table += items[i][2]
-                data_table += items[i][3]
 
-    elif data_filter == "out":
+    elif data_filter == "o":
         for i in range(0, len(items)):
             if items[i][3] == "out":
                 data_table += items[i][0]
                 data_table += items[i][1]
                 data_table += items[i][2]
-                data_table += items[i][3]
     else:
         print("An internal error occurred.")
-    return data_table
+
+    print(data_table)
 
 def return_items(items):
 
-    list_items(items, "out")
+    list_items(items, "o")
 
     valid_input = False
     while not valid_input:
