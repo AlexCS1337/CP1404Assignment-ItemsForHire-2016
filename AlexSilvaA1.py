@@ -13,6 +13,7 @@ FILENAME
 
 function main()
     items = load_items()
+    save = 0
     display welcome message
     display amount of items loaded from csv
     display menu
@@ -36,18 +37,18 @@ function main()
 
 """
 
-# Determines Constants
+# Determines a menu as a constant
 MENU = "\nMenu:\n(L)ist all items\n(H)ire an item\n(R)eturn an item\n(A)dd new item to stock\n(Q)uit"
 
 # Determines the filename
 FILENAME = "items.csv"
 
-#Counts how many items being saved to filename
-
 
 # Main function; contains welcome and farewell messages and choices
 def main():
     items = load_items()
+
+    # Counts how many items being saved to filename
     save = 0
     print(items)
     print("Items for Hire - by Alex Silva")
@@ -65,6 +66,7 @@ def main():
             items = return_items(items)
         elif choice == "A":
             items = add_items(items, save)
+            save += 1
         else:
             print("Invalid menu choice.")
         print(MENU)
@@ -120,6 +122,7 @@ def hire_items(items):
     # Lists all items that are currently in
     list_items(items, "i")
 
+    # Select Valid item
     valid_input = False
     while not valid_input:
         try:
@@ -130,7 +133,7 @@ def hire_items(items):
         except IndexError:
             print("Invalid number")
 
-    #Changes hired item status to 'out'
+    # Changes hired item status to 'out'
     items[item_to_hire][3] = "out"
 
     print(items[item_to_hire][0], "hired for $", items[item_to_hire][2])
@@ -162,11 +165,11 @@ function list_items(items. data_filter)
 
 
 def list_items(items, data_filter):
-    #determins rows as the length of items and data_table an empty varible
+    # determins rows as the length of items and data_table an empty varible
     rows = len(items)
     data_table = ""
 
-    #Lists all items
+    # Lists all items
     if data_filter == "a":
         for i in range(0, rows):
             data_table += "{:5}".format(str(i))
@@ -177,7 +180,7 @@ def list_items(items, data_filter):
                 data_table += "*"
             data_table += "\n"
 
-    #Lists all items in stock
+    # Lists all items in stock
     elif data_filter == "i":
         for i in range(0, rows):
             if items[i][3] == "in":
@@ -187,7 +190,7 @@ def list_items(items, data_filter):
                 data_table += "= $ {}".format(items[i][2])
                 data_table += "\n"
 
-    #Lists all items out of stock
+    # Lists all items out of stock
     elif data_filter == "o":
         for i in range(0, rows):
             if items[i][3] == "out":
@@ -251,7 +254,7 @@ def return_items(items):
         except IndexError:
             print("Invalid item number")
 
-    #Changes item_to_return status to 'in'
+    # Changes item_to_return status to 'in'
     items[item_to_return][3] = "in"
 
     print(items[item_to_return][0], "returned")
@@ -259,7 +262,7 @@ def return_items(items):
 
 
 """
-function add_items(items, SAVE)
+function add_items(items, save)
     new_item = ["", "", 0.0, "in"]
 
     get item_name
@@ -290,10 +293,10 @@ function add_items(items, SAVE)
 
 
 def add_items(items, save):
-    #Creates a list called new_item
+    # Creates a list called new_item
     new_item = ["", "", 0.0, "in"]
 
-    #
+    # Gets item information and stores them while error checking
     item_name = input("Item name: ")
     while item_name == "":
         print("Input cannot be blank")
@@ -315,10 +318,9 @@ def add_items(items, save):
     new_item[1] = item_description
     new_item[2] = price_per_day
 
-    # saves new item to items and adds to save counter
+    # This appends new_item into items
     items.append(new_item)
-    save += 1
-    #displays message
+    # displays message
     print(new_item[0], new_item[1] + ", $", new_item[2], "now available for hire")
     return items
 
