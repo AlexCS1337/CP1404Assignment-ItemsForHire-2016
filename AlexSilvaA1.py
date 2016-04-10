@@ -9,6 +9,7 @@ Pseudocode:
 Constants:
 MENU
 FILENAME
+SAVE
 
 function main()
     display welcome message
@@ -17,13 +18,13 @@ function main()
     get choice
     while choice is not 'Q'
         if choice is 'L'
-            call function list_items
+            call function list_items(items, "a")
         else if choice is 'H'
-            call function hire_items
+            call function hire_items(items)
         else if choice is 'R'
-            call function return_items
+            call function return_items(items)
         else if choice is 'A'
-            call function add_items
+            call function add_items(items, SAVE)
         else
             display invalid choice message
         display menu
@@ -40,11 +41,12 @@ MENU = "\nMenu:\n(L)ist all items\n(H)ire an item\n(R)eturn an item\n(A)dd new i
 FILENAME = "items.csv"
 
 #Counts how many items being saved to filename
-SAVE = 0
+
 
 # Main function; contains welcome and farewell messages and choices
 def main():
     items = load_items()
+    save = 0
     print(items)
     print("Items for Hire - by Alex Silva")
     print("items loaded from", FILENAME)
@@ -60,19 +62,19 @@ def main():
         elif choice == "R":
             items = return_items(items)
         elif choice == "A":
-            items = add_items(items)
+            items = add_items(items, save)
         else:
             print("Invalid menu choice.")
         print(MENU)
         choice = input(">>> ").upper()
 
-    print(SAVE, "items saved to items.csv")
+    print(save, "items saved to items.csv")
     print("Have a nice day. :)")
 
 
 """
-function load_items()
-    determine items as empty list
+function load_items(items)
+    items = ""
     open FILENAME
         sort lines in in_file
         append parts to items
@@ -96,7 +98,18 @@ def load_items():
 
 """
 function hire_item(items)
-    to be implemented
+    call list_items(items, "i")
+    valid_input = Fasle
+    while not valid_input
+        try
+            get item_to_hire
+            valid_input = True
+        except ValueError
+            display error message
+
+    item_to_hire = "out"
+    dsiplay item hired for price
+    return items
 
 """
 
@@ -115,12 +128,25 @@ def hire_items(items):
 
     items[item_to_hire][3] = "out"
 
-    print('item', "hired for", items[item_to_hire][2])
+    print(items[item_to_hire][0], "hired for $", items[item_to_hire][2])
     return items
 
 
 """
-function list_items
+function list_items(items. data_filter)
+    rows = len(items)
+    data_table = ""
+
+    if data_filter = all
+
+    if data_filter = in
+
+    if data_filter = out
+
+    else
+        display error message
+
+    display data_table
 
 """
 
@@ -129,6 +155,7 @@ def list_items(items, data_filter):
     rows = len(items)
     data_table = ""
 
+    #Lists all items
     if data_filter == "a":
         for i in range(0, rows):
             data_table += "{:5}".format(str(i))
@@ -139,6 +166,7 @@ def list_items(items, data_filter):
                 data_table += "*"
             data_table += "\n"
 
+    #Lists all items in stock
     elif data_filter == "i":
         for i in range(0, rows):
             if items[i][3] == "in":
@@ -148,6 +176,7 @@ def list_items(items, data_filter):
                 data_table += "= $ {}".format(items[i][2])
                 data_table += "\n"
 
+    #Lists all items out of stock
     elif data_filter == "o":
         for i in range(0, rows):
             if items[i][3] == "out":
@@ -164,8 +193,26 @@ def list_items(items, data_filter):
 
 
 """
-function return_items
+function return_items(items)
+    call list_items(items, "o"
+    rows = len(items)
 
+    valid_index = []
+    for i in range(0, rows)
+        if item == "out"
+            append to valid_index
+
+    valid_input = False
+    while not valid_input
+        try
+            get item_to_return
+                valid_input = True
+            else
+                display "That item is not on hire"
+        except ValueError
+            display error message
+        :except
+            display error message
 """
 
 
@@ -200,12 +247,37 @@ def return_items(items):
 
 
 """
-function add_items
+function add_items(items, SAVE)
+    new_item = ["", "", 0.0, "in"]
+
+    get item_name
+    while item_name = ""
+        display error message
+        get item_name
+    get description
+    while description = ""
+        display error message
+        get description
+    valid_input = False
+    while not valid_input
+        try
+            get prince_per_day
+            valid_input = True
+        :except ValueError
+            display error message
+
+    new_item[0] = item_name
+    new_item[1] = item_description
+    new_item[2] = price_per_day
+
+    append new_item to items
+    save += 1
+    return items
 
 """
 
 
-def add_items(items, SAVE):
+def add_items(items, save):
     new_item = ["", "", 0.0, "in"]
 
     item_name = input("Item name: ")
@@ -229,7 +301,7 @@ def add_items(items, SAVE):
     new_item[2] = price_per_day
 
     items.append(new_item)
-    SAVE += 1
+    save += 1
     return items
 
 
