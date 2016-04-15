@@ -143,10 +143,10 @@ def hire_items(items):
     valid_index = []
     counter = 0
     for i in range(0, rows):
-        counter += 1
         if items[i][3] == "in":
             valid_index.append(counter)
             valid_index.append(items[i])
+            counter += 1
 
     # SELECT VALID ITEM
     valid_input = False
@@ -267,10 +267,10 @@ def return_items(items):
     valid_index = []
     counter = 0
     for i in range(0, rows):
-        counter += 1
         if items[i][3] == "out":
             valid_index.append(counter)
             valid_index.append(items[i])
+            counter += 1
 
     # SELECT VALID ITEM
     valid_input = False
