@@ -36,6 +36,9 @@ function main()
 
 
 """
+# imports the required Item and ItemList classes
+from item import Item
+from itemlist import ItemList
 
 # Determines a menu as a constant
 MENU = "\nMenu:\n(L)ist all items\n(H)ire an item\n(R)eturn an item\n(A)dd new item to stock\n(Q)uit"
@@ -92,7 +95,7 @@ function load_items()
 
 def load_items():
     # Creates an empty list for variable 'items'
-    items = []
+    items = ItemList()
 
     # Opens and loads filename
     in_file = open(FILENAME)
