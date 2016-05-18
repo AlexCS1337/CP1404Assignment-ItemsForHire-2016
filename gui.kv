@@ -1,7 +1,72 @@
 BoxLayout:
-    orientation: 'vertical'
-    BoxLayout:
-        TextInput:
-            id: input_test
-            text: 'Test'
+    #test
+    id: mainBox
+    Popup:
+        id: popup
+        #Test
+        size_hint: (.7, .7)
+        title: "Add Item to list"
+        on_parent:
+            # Make popup disappear
+            if self.parent == mainBox: self.parent.remove_widget(self)
         BoxLayout:
+            #layout for input
+            id: inputs
+            orientation: 'vertical'
+            Label:
+                text: 'Item name: '
+            TextInput:
+                id: addedItemName
+                value: ''
+                height: '48dp'
+                # the next two lines make it so that pressing Tab moves the cursor
+                # to the next input field instead of entering the Tab character
+                multiline: False
+                write_tab: False
+            Label:
+                text: 'Discription'
+            TextInput:
+                id: addedDescription
+                value: ''
+                size_hint_y: None
+                height: '48dp'
+                multiline: False
+                write_tab: False
+            Label:
+                text: 'Price Per Day: '
+            TextInput:
+                id: addedPricePerDay
+                value: ''
+                size_hint_y: None
+                height: '48dp'
+                multiline: False
+                write_tab: False
+            Button:
+                text: 'Save Entry'
+                on_release: app.press_save(addedName.text, addedNumber.text)
+            Button:
+                text: 'Cancel'
+                on_release: app.press_cancel()
+    BoxLayout:
+        orientation: 'horizontal'
+        BoxLayout:
+            orientation: 'vertical'
+            Button:
+                text: 'List Items'
+            Button:
+                text: 'Hire Items'
+            Button:
+                text: 'Return Items'
+            Button:
+                text: 'Confirm'
+            Button:
+                id: addButton
+                text: 'Add New Item'
+                on_release: app.press_add()
+
+        GridLayout:
+            # this layout is populated with (button) widgets in app code
+            id: entriesBox
+            cols: 1
+            orientation: 'vertical'
+

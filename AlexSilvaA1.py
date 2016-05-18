@@ -95,7 +95,7 @@ function load_items()
 
 def load_items():
     # Creates an empty list for variable 'items'
-    items = ItemList()
+    items = []
 
     # Opens and loads filename
     in_file = open(FILENAME)
