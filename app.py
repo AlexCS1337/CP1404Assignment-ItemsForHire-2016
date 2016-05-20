@@ -4,6 +4,10 @@ __author__ = 'Alex Silva'
 """
 Application created by Alex Silva
 08/05/16
+CP1404 Assignment 1 - 2016
+    ItemsForHire - itemlist.py
+    Alex Silva
+    https://github.com/AlexCSilva/CP1404Assignment1-ItemsForHire
 
 pseudocode:
 import app
