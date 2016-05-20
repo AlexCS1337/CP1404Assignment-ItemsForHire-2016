@@ -359,5 +359,5 @@ def add_items(items, save):
     print(new_item[0], new_item[1] + ", $", new_item[2], "now available for hire")
     return items
 
-
-main()
+if __name__ == '__main__':
+    main()

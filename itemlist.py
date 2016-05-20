@@ -6,13 +6,20 @@
 
 Class ItemList Pseudocode
 """
-
+from item import Item
 
 class ItemList:
     def __init__(self, items=None):
-        if items is None:
-            items = []
-        self.items = items
+        self.items = []
+        for item in items:
+            self.items.append(Item(item[0], ))
 
-    # def item_to_apend(self):
+    def hire_items(self):
+        print('test')
+
+    def return_items(self):
+        print('test')
+
+    def add_items(self):
+        print('test')
 
