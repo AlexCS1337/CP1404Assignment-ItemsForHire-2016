@@ -117,9 +117,9 @@ class EquipmentHire(App):
         :param added_number: phone number text input (string)
         :return: None
         """
-        self.phonebook[added_name] = added_number
+        self.itemlist[added_name] = added_number
         # change the number of columns based on the number of entries (no more than 5 rows of entries)
-        self.root.ids.entriesBox.cols = len(self.phonebook) // 5 + 1
+        self.root.ids.entriesBox.cols = len(self.itemlist) // 5 + 1
         # add button for new entry (same as in create_entry_buttons())
         temp_button = Button(text=added_name)
         temp_button.bind(on_release=self.press_entry)
