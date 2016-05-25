@@ -48,36 +48,37 @@ BoxLayout:
                 text: 'Cancel'
                 on_release: app.press_cancel()
     BoxLayout:
-        orientation: 'horizontal'
+        orientation: 'vertical'
         BoxLayout:
-            orientation: 'vertical'
+            orientation: 'horizontal'
             BoxLayout:
-            Button:
-                id: listItems
-                text: 'List Items'
-                state: 'down'
-            Button:
-                id: hireItems
-                text: 'Hire Items'
-            Button:
-                id: returnItems
-                text: 'Return Items'
-            Button:
-                id: btnConfirm
-                text: 'Confirm'
-            Button:
-                id: addButton
-                text: 'Add New Item'
-                on_release: app.press_add()
+                orientation: 'vertical'
+                Button:
+                    id: listItems
+                    text: 'List Items'
+                    state: 'down'
+                Button:
+                    id: hireItems
+                    text: 'Hire Items'
+                Button:
+                    id: returnItems
+                    text: 'Return Items'
+                Button:
+                    id: btnConfirm
+                    text: 'Confirm'
+                Button:
+                    id: addButton
+                    text: 'Add New Item'
+                    on_release: app.press_add()
 
-        GridLayout:
-            # this layout is populated with (button) widgets in app code
-            id: entriesBox
-            cols: 1
-            orientation: 'vertical'
+            GridLayout:
+                # this layout is populated with (button) widgets in app code
+                id: entriesBox
+                cols: 1
+                orientation: 'vertical'
 
-    Label:
-        id: statusLabel
-        size_hint_y: 0.1
-        text: app.status_text
+        Label:
+            id: statusLabel
+            size_hint_y: 0.1
+            text: app.status_text
 

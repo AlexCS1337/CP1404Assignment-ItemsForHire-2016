@@ -50,6 +50,7 @@ class EquipmentHire(App):
         # This loads the item list from the csv
         self.itemlist = ItemList(load_items())
         self.mode = LIST_MODE
+        self.selected_items = []
 
     def build(self):
         """ Build kivy app from the kv file """
@@ -87,11 +88,14 @@ class EquipmentHire(App):
         """
         # update status text
         name = instance.text
+        clicked_item = self.itemlist.get_item(name)
 
         if self.mode == LIST_MODE:
-            self.status_text = "{}'s number is {}".format(name, self.itemlist.get_item(name))
+            self.status_text = "{}'s price is {}".format(name, clicked_item.price)
         elif self.mode == HIRE_MODE:
-            pass
+            if clicked_item.name not in self.selected_items and clicked_item.status == 'in':
+                self.selected_items.append(clicked_item)
+
         elif self.mode == RETURN_MODE:
             pass
         elif self.mode == ADD_MODE:
