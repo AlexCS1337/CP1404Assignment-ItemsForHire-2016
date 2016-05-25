@@ -29,6 +29,12 @@ from itemlist import ItemList
 from item import Item
 from AlexSilvaA1 import load_items
 
+#Defines constants
+LIST_MODE = 0
+HIRE_MODE = 1
+RETURN_MODE = 3
+ADD_MODE = 4
+
 
 class EquipmentHire(App):
     """
@@ -43,11 +49,13 @@ class EquipmentHire(App):
         super(EquipmentHire, self).__init__(**kwargs)
         # This loads the item list from the csv
         self.itemlist = ItemList(load_items())
+        self.mode = LIST_MODE
 
     def build(self):
         """ Build kivy app from the kv file """
         self.title = "Equipment Hire"
         self.root = Builder.load_file('gui.kv')
+        self.create_entry_buttons()
         return self.root
 
     def press_add(self):
@@ -64,9 +72,9 @@ class EquipmentHire(App):
         Create the entry buttons and add them to the GUI
         :return: None
         """
-        for name in self.phonebook:
+        for item in self.itemlist.items:
             # create a button for each phonebook entry
-            temp_button = Button(text=name)
+            temp_button = Button(text=item.name)
             temp_button.bind(on_release=self.press_entry)
             # add the button to the "entriesBox" using add_widget()
             self.root.ids.entriesBox.add_widget(temp_button)
@@ -79,7 +87,15 @@ class EquipmentHire(App):
         """
         # update status text
         name = instance.text
-        self.status_text = "{}'s number is {}".format(name, self.phonebook[name])
+
+        if self.mode == LIST_MODE:
+            self.status_text = "{}'s number is {}".format(name, self.itemlist[name])
+        elif self.mode == HIRE_MODE:
+            pass
+        elif self.mode == RETURN_MODE:
+            pass
+        elif self.mode == ADD_MODE:
+            self.status_text = "Test"
         # set button state
         # print(instance.state)
         instance.state = 'down'

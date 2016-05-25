@@ -12,14 +12,11 @@ class ItemList:
     def __init__(self, items=None):
         self.items = []
         for item in items:
-            self.items.append(Item(item[0], ))
-
-    def hire_items(self):
-        print('test')
-
-    def return_items(self):
-        print('test')
+            self.items.append(Item(item[0], item[1], float(item[2]), item[3]))
 
     def add_items(self):
-        print('test')
+        pass
+
+    def get_item(self, name):
+        pass
 
