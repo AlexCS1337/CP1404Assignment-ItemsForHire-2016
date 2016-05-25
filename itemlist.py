@@ -18,5 +18,8 @@ class ItemList:
         pass
 
     def get_item(self, name):
-        pass
+        for item in self.items:
+            if item.name == name:
+                return item
+
 

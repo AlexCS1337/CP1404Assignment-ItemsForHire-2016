@@ -89,7 +89,7 @@ class EquipmentHire(App):
         name = instance.text
 
         if self.mode == LIST_MODE:
-            self.status_text = "{}'s number is {}".format(name, self.itemlist[name])
+            self.status_text = "{}'s number is {}".format(name, self.itemlist.get_item(name))
         elif self.mode == HIRE_MODE:
             pass
         elif self.mode == RETURN_MODE:

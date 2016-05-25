@@ -51,14 +51,19 @@ BoxLayout:
         orientation: 'horizontal'
         BoxLayout:
             orientation: 'vertical'
+            BoxLayout:
             Button:
+                id: listItems
                 text: 'List Items'
                 state: 'down'
             Button:
+                id: hireItems
                 text: 'Hire Items'
             Button:
+                id: returnItems
                 text: 'Return Items'
             Button:
+                id: btnConfirm
                 text: 'Confirm'
             Button:
                 id: addButton
@@ -70,4 +75,9 @@ BoxLayout:
             id: entriesBox
             cols: 1
             orientation: 'vertical'
+
+    Label:
+        id: statusLabel
+        size_hint_y: 0.1
+        text: app.status_text
 
