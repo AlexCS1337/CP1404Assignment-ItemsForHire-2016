@@ -359,5 +359,11 @@ def add_items(items, save):
     print(new_item[0], new_item[1] + ", $", new_item[2], "now available for hire")
     return items
 
+def save_items(items):
+    with open(FILENAME, 'w') as file_out:
+        for item in items:
+            file_out.write(','.join(str(i) for i in item))
+            file_out.write('\n')
+
 if __name__ == '__main__':
     main()
