@@ -33,7 +33,6 @@ from AlexSilvaA1 import load_items
 LIST_MODE = 0
 HIRE_MODE = 1
 RETURN_MODE = 3
-ADD_MODE = 4
 
 
 class EquipmentHire(App):
@@ -59,6 +58,11 @@ class EquipmentHire(App):
         self.root = Builder.load_file('gui.kv')
         self.create_entry_buttons()
         return self.root
+
+    def on_stop(self):
+        # get items from self.itemlist
+        # call save functioon from AlexSilva1
+        pass
 
     def press_add(self):
         """
@@ -99,17 +103,24 @@ class EquipmentHire(App):
                 #set instance state
                 instance.state = 'down'
         elif self.mode == RETURN_MODE:
-            pass
-        elif self.mode == ADD_MODE:
-            pass
+            if clicked_item.name not in self.selected_items and clicked_item.status == 'out':
+                self.selected_items.append(clicked_item)
 
     def press_hire(self):
-        self.mode == HIRE_MODE
+        self.mode = HIRE_MODE
+        #changes state of each button
         self.root.ids.hireItems.state = 'down'
         self.root.ids.listItems.state = 'normal'
         self.root.ids.returnItems.state = 'normal'
-        self.root.ids.confirmButton.state = 'normal'
-        self.root.ids.addButton.state = 'normal'
+
+
+    def press_return(self):
+        self.mode = RETURN_MODE
+        #changes state of each button
+        self.root.ids.hireItems.state = 'normal'
+        self.root.ids.listItems.state = 'normal'
+        self.root.ids.returnItems.state = 'down'
+
 
 
     def press_clear(self):
