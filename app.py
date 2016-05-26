@@ -91,11 +91,13 @@ class EquipmentHire(App):
         :param instance: the Kivy button instance
         :return: None
         """
-        # update status text
+
         name = instance.text
         clicked_item = self.itemlist.get_item(name)
 
+        #Checks mode selected
         if self.mode == LIST_MODE:
+            # update status text
             self.status_text = "{}'s price is ${}".format(name, clicked_item.cost)
         elif self.mode == HIRE_MODE:
             if clicked_item.name not in self.selected_items and clicked_item.status == 'in':
@@ -112,6 +114,10 @@ class EquipmentHire(App):
 
 
     def press_hire(self):
+        """
+
+        :return:
+        """
         self.mode = HIRE_MODE
         #changes state of each button
         self.root.ids.hireItems.state = 'down'
@@ -120,6 +126,9 @@ class EquipmentHire(App):
 
 
     def press_return(self):
+        """
+        :return:
+        """
         self.mode = RETURN_MODE
         #changes state of each button
         self.root.ids.hireItems.state = 'normal'
