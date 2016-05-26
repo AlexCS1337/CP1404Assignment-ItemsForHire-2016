@@ -102,13 +102,13 @@ class EquipmentHire(App):
                 self.selected_items.append(clicked_item)
                 #set instance state
                 instance.state = 'down'
-                self.status_text = "{} is now being hired".format(name)
+                self.status_text = "Hiring: {} for ${}".format(name, clicked_item.cost)
         elif self.mode == RETURN_MODE:
             if clicked_item.name not in self.selected_items and clicked_item.status == 'out':
                 self.selected_items.append(clicked_item)
                 #set instance state
                 instance.state = 'down'
-                self.status_text = "{} has been returned".format(name)
+                self.status_text = "Returning: {}".format(name)
 
 
     def press_hire(self):
