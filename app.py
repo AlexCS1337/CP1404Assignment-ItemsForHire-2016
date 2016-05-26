@@ -26,7 +26,6 @@ from kivy.properties import StringProperty
 
 # Import necessary modules for the app's functionality
 from itemlist import ItemList
-from item import Item
 from AlexSilvaA1 import load_items
 
 #Defines constants
@@ -51,6 +50,7 @@ class EquipmentHire(App):
         self.itemlist.add_items(load_items())
         self.mode = LIST_MODE
         self.selected_items = []
+        self.status_text = 'Choose action from the left menu, then select items on the right'
 
     def build(self):
         """ Build kivy app from the kv file """
@@ -102,9 +102,14 @@ class EquipmentHire(App):
                 self.selected_items.append(clicked_item)
                 #set instance state
                 instance.state = 'down'
+                self.status_text = "{} is now being hired".format(name)
         elif self.mode == RETURN_MODE:
             if clicked_item.name not in self.selected_items and clicked_item.status == 'out':
                 self.selected_items.append(clicked_item)
+                #set instance state
+                instance.state = 'down'
+                self.status_text = "{} has been returned".format(name)
+
 
     def press_hire(self):
         self.mode = HIRE_MODE
