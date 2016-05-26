@@ -48,7 +48,8 @@ class EquipmentHire(App):
         """
         super(EquipmentHire, self).__init__(**kwargs)
         # This loads the item list from the csv
-        self.itemlist = ItemList(load_items())
+        self.itemlist = ItemList()
+        self.itemlist.add_items(load_items())
         self.mode = LIST_MODE
         self.selected_items = []
 
@@ -91,18 +92,20 @@ class EquipmentHire(App):
         clicked_item = self.itemlist.get_item(name)
 
         if self.mode == LIST_MODE:
-            self.status_text = "{}'s price is {}".format(name, clicked_item.price)
+            self.status_text = "{}'s price is ${}".format(name, clicked_item.cost)
         elif self.mode == HIRE_MODE:
             if clicked_item.name not in self.selected_items and clicked_item.status == 'in':
                 self.selected_items.append(clicked_item)
-
+                #set instance state
+                instance.state = 'down'
         elif self.mode == RETURN_MODE:
             pass
         elif self.mode == ADD_MODE:
-            self.status_text = "Test"
-        # set button state
-        # print(instance.state)
-        instance.state = 'down'
+            pass
+
+    def press_hire(self):
+        self.mode == HIRE_MODE
+
 
     def press_clear(self):
         """

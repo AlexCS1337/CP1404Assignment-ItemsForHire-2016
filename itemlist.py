@@ -9,13 +9,13 @@ Class ItemList Pseudocode
 from item import Item
 
 class ItemList:
-    def __init__(self, items=None):
+    def __init__(self):
         self.items = []
+
+
+    def add_items(self, items):
         for item in items:
             self.items.append(Item(item[0], item[1], float(item[2]), item[3]))
-
-    def add_items(self):
-        pass
 
     def get_item(self, name):
         for item in self.items:
