@@ -105,6 +105,11 @@ class EquipmentHire(App):
 
     def press_hire(self):
         self.mode == HIRE_MODE
+        self.root.ids.hireItems.state = 'down'
+        self.root.ids.listItems.state = 'normal'
+        self.root.ids.returnItems.state = 'normal'
+        self.root.ids.confirmButton.state = 'normal'
+        self.root.ids.addButton.state = 'normal'
 
 
     def press_clear(self):
