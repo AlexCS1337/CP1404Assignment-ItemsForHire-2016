@@ -36,6 +36,9 @@ function main()
 
 
 """
+# imports the required Item and ItemList classes
+from item import Item
+from itemlist import ItemList
 
 # Determines a menu as a constant
 MENU = "\nMenu:\n(L)ist all items\n(H)ire an item\n(R)eturn an item\n(A)dd new item to stock\n(Q)uit"
@@ -143,10 +146,10 @@ def hire_items(items):
     valid_index = []
     counter = 0
     for i in range(0, rows):
-        counter += 1
         if items[i][3] == "in":
             valid_index.append(counter)
             valid_index.append(items[i])
+            counter += 1
 
     # SELECT VALID ITEM
     valid_input = False
@@ -267,10 +270,10 @@ def return_items(items):
     valid_index = []
     counter = 0
     for i in range(0, rows):
-        counter += 1
         if items[i][3] == "out":
             valid_index.append(counter)
             valid_index.append(items[i])
+            counter += 1
 
     # SELECT VALID ITEM
     valid_input = False
@@ -357,4 +360,12 @@ def add_items(items, save):
     return items
 
 
-main()
+def save_items(items):
+    with open(FILENAME, 'w') as file_out:
+        for item in items:
+            file_out.write(','.join(str(i) for i in item))
+            file_out.write('\n')
+
+
+if __name__ == '__main__':
+    main()

@@ -1,0 +1,92 @@
+BoxLayout:
+    #test
+    id: mainBox
+    Popup:
+        id: popup
+        #Test
+        size_hint: (.7, .7)
+        title: "Add Item to list"
+        on_parent:
+            # Make popup disappear
+            if self.parent == mainBox: self.parent.remove_widget(self)
+        BoxLayout:
+            #layout for input
+            id: inputs
+            orientation: 'vertical'
+            Label:
+                text: 'Item name: '
+            TextInput:
+                id: addedItemName
+                value: ''
+                height: '48dp'
+                # the next two lines make it so that pressing Tab moves the cursor
+                # to the next input field instead of entering the Tab character
+                multiline: False
+                write_tab: False
+            Label:
+                text: 'Discription'
+            TextInput:
+                id: addedDescription
+                value: ''
+                size_hint_y: None
+                height: '48dp'
+                multiline: False
+                write_tab: False
+            Label:
+                text: 'Price Per Day: '
+            TextInput:
+                id: addedPricePerDay
+                value: ''
+                size_hint_y: None
+                height: '48dp'
+                multiline: False
+                write_tab: False
+            Button:
+                text: 'Save Entry'
+                on_release: app.press_save(addedItemName.text, addedDescription.text, addedPricePerDay.text)
+            Button:
+                text: 'Cancel'
+                on_release: app.press_cancel()
+            Label:
+                # this is a different Label than the main GUI screen,
+                # but uses the same string data
+                text: app.status_text
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            orientation: 'horizontal'
+            BoxLayout:
+                orientation: 'vertical'
+                Button:
+                    id: listItems
+                    text: 'List Items'
+                    state: 'down'
+                    on_release: app.press_list()
+                Button:
+                    id: hireItems
+                    text: 'Hire Items'
+                    on_release: app.press_hire()
+                Button:
+                    id: returnItems
+                    text: 'Return Items'
+                    on_release: app.press_return()
+                Button:
+                    id: confirmButton
+                    text: 'Confirm'
+                    on_release: app.press_confirm()
+                Button:
+                    id: addButton
+                    text: 'Add New Item'
+                    on_release: app.press_add()
+
+            GridLayout:
+                # this layout is populated with (button) widgets in app code
+                id: entriesBox
+                cols: 1
+                orientation: 'vertical'
+
+        Label:
+            id: statusLabel
+            size_hint_y: 0.1
+            text: app.status_text
+
