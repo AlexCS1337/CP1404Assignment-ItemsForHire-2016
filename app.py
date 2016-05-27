@@ -27,6 +27,7 @@ from kivy.properties import StringProperty
 # Import necessary modules for the app's functionality
 from itemlist import ItemList
 from AlexSilvaA1 import load_items
+from AlexSilvaA1 import save_items
 
 #Defines constants
 LIST_MODE = 0
@@ -63,6 +64,7 @@ class EquipmentHire(App):
         # get items from self.itemlist
         # call save functioon from AlexSilva1
         pass
+        # save_items(self.itemlist)
 
     def press_add(self):
         """
@@ -106,7 +108,7 @@ class EquipmentHire(App):
                 instance.state = 'down'
                 names = []
                 for item in self.selected_items:
-                    names.append(item)
+                    names.append(item.name)
                 self.status_text = "Hiring: {} for ${}".format(','.join(names), clicked_item.cost)
             else:
                 self.status_text = "Hiring: no items for $0.00"
@@ -139,6 +141,13 @@ class EquipmentHire(App):
         self.root.ids.hireItems.state = 'normal'
         self.root.ids.listItems.state = 'normal'
         self.root.ids.returnItems.state = 'down'
+
+
+    def press_confirm(self):
+        """
+        :return:
+        """
+        return self.selected_items
 
 
 
