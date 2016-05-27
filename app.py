@@ -98,13 +98,18 @@ class EquipmentHire(App):
         #Checks mode selected
         if self.mode == LIST_MODE:
             # update status text
-            self.status_text = "{}'s price is ${}".format(name, clicked_item.cost)
+            self.status_text = "{} ({}), ${} is {}".format(name, clicked_item.description, clicked_item.cost, clicked_item.status)
         elif self.mode == HIRE_MODE:
             if clicked_item.name not in self.selected_items and clicked_item.status == 'in':
                 self.selected_items.append(clicked_item)
                 #set instance state
                 instance.state = 'down'
-                self.status_text = "Hiring: {} for ${}".format(name, clicked_item.cost)
+                names = []
+                for item in self.selected_items:
+                    names.append(item)
+                self.status_text = "Hiring: {} for ${}".format(','.join(names), clicked_item.cost)
+            else:
+                self.status_text = "Hiring: no items for $0.00"
         elif self.mode == RETURN_MODE:
             if clicked_item.name not in self.selected_items and clicked_item.status == 'out':
                 self.selected_items.append(clicked_item)
