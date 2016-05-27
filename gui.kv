@@ -43,10 +43,14 @@ BoxLayout:
                 write_tab: False
             Button:
                 text: 'Save Entry'
-                on_release: app.press_save(addedName.text, addedNumber.text)
+                on_release: app.press_save(addedItemName.text, addedDescription.text, addedPricePerDay.text)
             Button:
                 text: 'Cancel'
                 on_release: app.press_cancel()
+            Label:
+                # this is a different Label than the main GUI screen,
+                # but uses the same string data
+                text: app.status_text
     BoxLayout:
         orientation: 'vertical'
         BoxLayout:
@@ -57,6 +61,7 @@ BoxLayout:
                     id: listItems
                     text: 'List Items'
                     state: 'down'
+                    on_release: app.press_list()
                 Button:
                     id: hireItems
                     text: 'Hire Items'
@@ -68,7 +73,7 @@ BoxLayout:
                 Button:
                     id: confirmButton
                     text: 'Confirm'
-                    on_release: app.press_confirm
+                    on_release: app.press_confirm()
                 Button:
                     id: addButton
                     text: 'Add New Item'
